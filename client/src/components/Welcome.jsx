@@ -2,13 +2,17 @@ import React from "react";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
-
 import { Loader } from "./";
+import { TransactionContext } from "../context/TransactionContext";
+import { useContext } from "react";
 
 const commonStyles =
   "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
 
 const Welcome = () => {
+
+  const {connectWallet} = useContext(TransactionContext);
+
   const Input = ({ placeholder, name, type, value, onChange }) => {
     return (
       <input
@@ -20,10 +24,6 @@ const Welcome = () => {
         className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
       />
     );
-  };
-
-  const connectWallet = () => {
-
   };
 
   const handleSubmit = () => {
