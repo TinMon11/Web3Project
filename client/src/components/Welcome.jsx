@@ -5,6 +5,7 @@ import { BsInfoCircle } from "react-icons/bs";
 import { Loader } from "./";
 import { TransactionContext } from "../context/TransactionContext";
 import { useContext } from "react";
+import {shortenAddress} from '../utils/shortenAddress'
 
 const commonStyles =
   "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
@@ -27,9 +28,9 @@ const Welcome = () => {
     connectWallet,
     currentAccount,
     formData,
-    setFormData,
     handleChange,
     sendTransaction,
+    isLoading
   } = useContext(TransactionContext);
 
 
@@ -84,7 +85,7 @@ const Welcome = () => {
               </div>
               <div>
                 <p className="text-white font-light text-sm">
-                  Address of the wallet
+                  {shortenAddress(currentAccount)}
                 </p>
                 <p className="text-white font-medium text-lg">Polygon Mumbai Network</p>
               </div>
@@ -99,7 +100,7 @@ const Welcome = () => {
 
             <div className="h-[1px] w-full bg-gray-400 mr-2" />
 
-            {false ? (
+            {isLoading ? (
               <Loader />
             ) : (
               <button
